@@ -12,30 +12,28 @@
 	SYSMENU="yes"
 	BORDER="thin"
     BORDERSTYLE="normal"
+    ICON="resources/img/app.ico"
   />
   
   
-  <script src=".\resources\lib\jquery-1.9.1.min.js"></script> 
-  
+  <script src=".\resources\js\jquery-1.9.1.min.js"></script> 
+  <script src=".\resources\js\lib.js"></script> 
   
   <link rel="stylesheet" type="text/css" href=".\resources\css\menu.css">
   
-  <script language=javascript>
-		var winWidth=800; // ширина окна
-		var winHeight=600; // высота окна
-		// изменяем размер
-		window.resizeTo(winWidth, winHeight);
 
-		// окно в центр экрана
-		var winPosX=screen.width/2-winWidth/2;
-		var winPosY=screen.height/2-winHeight/2;
-		window.moveTo(winPosX, winPosY);
-		
-	</script>
-	
-	<script language=javascript>
-		//$('tablinks')
-	</script>
+	<script type="text/javascript">
+        
+    	jQuery.get('config.json', function(data) {
+		  // alert(data);
+		   //process text file line by line
+		   //$('.console').html(data.replace('n',''));
+		   $('.console').html(data);
+		});
+     </script>
+
+
+
 </head>
 
 <SCRIPT LANGUAGE="VBScript">
@@ -44,41 +42,52 @@
        self.close
     End Sub
 
+    Sub RunProgram 
+	    Set WshShell = CreateObject("WScript.Shell")
+		Set WshExec = WshShell.Exec("ping ya.ru")
+		
+
+		Set TextStream = WshExec.StdOut
+		Str = TextStream.ReadAll
+		MsgBox Str
+
+	End Sub
+
 </SCRIPT>
 
 <body onkeypress='CloseWindow'>
-<div>
+<div class="mainmenu">
 	<div class="tab">
 	  <button class="tablinks" onclick="">FTP</button>
-	  <button class="tablinks" onclick="">Patch</button>
-	  <button class="tablinks" onclick="">Other</button>
+	  <button class="tablinks" onclick="">PATCH</button>
+	  <button class="tablinks" onclick="">OTHERS</button>
 	</div>
+</div>
 
-	<!-- Tab content -->
+<div class="content">
+		<!-- Tab content -->
 	<div id="FTP" class="tabcontent">
-	  <h3>FTP</h3>
 	  <p>Работа с файлами на FTP</p>
 		<div>
 			<label>Ссылка на счкачивание файла с патчем</label>
-			<div><input type="" name="get_ftp" > <input type="button" value="Get patch from FTP" name="run_button"  onClick="TestSub()"></div>
+			<div><input type="" name="get_ftp" > <input type="button" value="Get patch from FTP" name="run_button"  onClick="RunProgram()"></div>
 
 		</div>
 	</div>
 
 	<div id="PATCH" class="tabcontent">
-	  <h3>Patch</h3>
 	  <p>Сборка патча</p> 
 	</div>
 
-	<div id="OTHER" class="tabcontent">
-	  <h3>Other</h3>
+	<div id="OTHERS" class="tabcontent">
 	  <p>Дополнительные функции</p>
 	</div>
 </div>
-</br>
-</br>
-</br>
-<p></p>
+
+<div class="console" id=|"consoleData">
+	<label>Console</label>
+</div>
+
 
 
 </body>

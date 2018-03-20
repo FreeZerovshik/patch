@@ -1,0 +1,17 @@
+{
+   "ftp": {
+       "url": "Московское ш., 101, кв.101",
+       "user": "Ленинград",
+       "pass": 101101,
+       "filename"
+   },
+   "tns": {
+      "vtb24_dev": { "user" : "IBS",
+                     "pass" : "IBS"
+                   },
+      "vtb24_daily": { "user" : "IBS",
+                     "pass" : "IBS"
+                   },             
+       
+   }
+}
