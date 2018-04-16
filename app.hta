@@ -21,39 +21,34 @@
   
   <link rel="stylesheet" type="text/css" href=".\resources\css\menu.css">
   
-
-	<script type="text/javascript">
-        
-    	jQuery.get('config.json', function(data) {
-		  // alert(data);
-		   //process text file line by line
-		   //$('.console').html(data.replace('n',''));
-		   $('.console').html(data);
-		});
-     </script>
-
-
-
 </head>
 
 <SCRIPT LANGUAGE="VBScript">
-
+Option Explicit
     Sub CloseWindow
        self.close
     End Sub
 
-    Sub RunProgram 
-	    Set WshShell = CreateObject("WScript.Shell")
-		Set WshExec = WshShell.Exec("ping ya.ru")
-		
-
-		Set TextStream = WshExec.StdOut
-		Str = TextStream.ReadAll
-		MsgBox Str
-
-	End Sub
 
 </SCRIPT>
+
+<script type="text/javascript">
+		function Exe(){
+		   	var WshShell = new ActiveXObject("WScript.Shell");
+			var oExec = WshShell.Exec("ipconfig.exe");
+			var input = "";
+
+			 while (!oExec.StdOut.AtEndOfStream) {
+			         input += oExec.StdOut.ReadLine() + "<br />";
+			 }
+
+			 if (input)
+			  document.getElementById("output_area").innerHTML = input;
+			    
+			}
+
+		
+</script>
 
 <body onkeypress='CloseWindow'>
 <div class="mainmenu">
@@ -70,25 +65,22 @@
 	  <p>Работа с файлами на FTP</p>
 		<div>
 			<label>Ссылка на счкачивание файла с патчем</label>
-			<div><input type="" name="get_ftp" > <input type="button" value="Get patch from FTP" name="run_button"  onClick="RunProgram()"></div>
+			<div><input type="" name="get_ftp" > <input type="button" value="Get patch from FTP" name="run_button"  onClick="runCmd('ipconfig.exe')"/> </div>
+		</div>
 
+		<div id="PATCH" class="tabcontent">
+	  		<p>Сборка патча</p> 
+		</div>
+
+		<div id="OTHERS" class="tabcontent">
+		  <p>Дополнительные функции</p>
 		</div>
 	</div>
+</div>	
 
-	<div id="PATCH" class="tabcontent">
-	  <p>Сборка патча</p> 
-	</div>
-
-	<div id="OTHERS" class="tabcontent">
-	  <p>Дополнительные функции</p>
-	</div>
+<div id="output_area" class="console">
+	<p>TEST </p>
 </div>
-
-<div class="console" id=|"consoleData">
-	<label>Console</label>
-</div>
-
-
 
 </body>
 

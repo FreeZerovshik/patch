@@ -1,9 +1,9 @@
 {
    "ftp": {
-       "url": "Московское ш., 101, кв.101",
-       "user": "Ленинград",
-       "pass": 101101,
-       "filename"
+       "url": "ftp://ftp.ftc.ru/ ",
+       "user": "anonymous",
+       "pass": "anonymous",
+       "filename" : "patch.7z"
    },
    "tns": {
       "vtb24_dev": { "user" : "IBS",
@@ -11,7 +11,7 @@
                    },
       "vtb24_daily": { "user" : "IBS",
                      "pass" : "IBS"
-                   },             
+                   }            
        
    }
 }
