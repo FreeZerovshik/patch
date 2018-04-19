@@ -5,6 +5,9 @@
        "pass": "anonymous",
        "filename" : "patch.7z"
    },
+
+   "arm":{ "pick" : "C:\\ARM\\Pick93_145.exe"
+          }, 
    "tns": {
       "vtb24_dev": { "user" : "IBS",
                      "pass" : "IBS"

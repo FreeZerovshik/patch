@@ -53,7 +53,7 @@ Option Explicit
 <body onkeypress='CloseWindow'>
 <div class="mainmenu">
 	<div class="tab">
-	  <button class="tablinks" onclick="">FTP</button>
+	  <button class="tablinks active" onclick="">FTP</button>
 	  <button class="tablinks" onclick="">PATCH</button>
 	  <button class="tablinks" onclick="">OTHERS</button>
 	</div>
@@ -64,23 +64,30 @@ Option Explicit
 	<div id="FTP" class="tabcontent">
 	  <p>Работа с файлами на FTP</p>
 		<div>
-			<label>Ссылка на счкачивание файла с патчем</label>
-			<div><input type="" name="get_ftp" > <input type="button" value="Get patch from FTP" name="run_button"  onClick="runCmd('ipconfig.exe')"/> </div>
+			<label>Ссылка на скачивание файла с патчем</label>
+			<div><input id="get_ftp" type="" name="get_ftp" size="50" />   <input type="button" value="Get patch from FTP" name="run_button"  onClick="runCmd('ipconfig.exe')"/> </div>
 		</div>
 
-		<div id="PATCH" class="tabcontent">
+		<div id="PATCH" class="tabcontent hide">
 	  		<p>Сборка патча</p> 
+	  		<button onclick="make_pck()">Сформировать pck </button>
+	  		<div class="pck_files">
+		  		<table border="1">
+	            <tr>
+	                <td><input id="pck" type="file"  size="50"/></td>
+	                <td><button onclick="make_patch('pck')">Собрать хранилище </button></td>
+	            </tr>
+	        	</table> 
+        	</div>
 		</div>
 
-		<div id="OTHERS" class="tabcontent">
+		<div id="OTHERS" class="tabcontent hide">
 		  <p>Дополнительные функции</p>
 		</div>
 	</div>
 </div>	
 
-<div id="output_area" class="console">
-	<p>TEST </p>
-</div>
+<div id="output_area" class="console"></div>
 
 </body>
 
