@@ -1,9 +1,11 @@
 {
    "ftp": {
-       "url": "ftp://ftp.ftc.ru/ ",
+       "url": "ftp.ftc.ru",
        "user": "anonymous",
        "pass": "anonymous",
-       "filename" : "patch.7z"
+       "def_directory" : "download",
+       "filename" : "All.zip",
+       "upload_file": "upload.txt"
    },
 
    "arm":{ "pick" : "C:\\ARM\\Pick93_145.exe"

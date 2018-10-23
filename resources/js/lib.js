@@ -1,5 +1,5 @@
 
-var params
+//var params;
 
 // изменение ращмеров основного окна
 function resizeScreen() {
@@ -58,6 +58,12 @@ function readParams(){
 
     var output = $('#output_area')
 
+    $('#ftp_server').append('сервер: ' + params.ftp.url);
+    $('#ftp_user').append('user: ' + params.ftp.user);
+    $('#ftp_catalog').append('catalog: ' + params.ftp.def_directory);
+    $('#get_ftp').val(params.ftp.filename);
+
+
     output.html('Инициализация параметров:' +  "<br />")
 
     //read_array(params, output);
@@ -90,6 +96,40 @@ function readParams(){
     });
 }
 
+
+function create_ftp_cmd(){
+// # Connect
+// open ftp://anonymous:anonymous@ftp.ftc.ru/ 
+// # Change remote directory
+// cd /download
+// # Download file to the local directory d:\
+// get 1.7z .\
+// # Disconnect
+// close
+// # Exit WinSCP
+// exit
+
+params
+
+var cmd = 'open ftp://'+ params.ftp.user + ':' + params.ftp.pass + '@' + params.ftp.url + '/' + '\r\n';
+ if (params.ftp.def_directory) {
+    cmd += 'cd /'+ params.ftp.def_directory + '\r\n';
+ }
+ 
+ cmd += 'get '+ params.ftp.filename + ' .\\'+'\r\n';
+ cmd += 'close'+'\r\n';
+ cmd += 'exit'+'\r\n';
+
+
+ var fso  = new ActiveXObject("Scripting.FileSystemObject"); 
+ var fh = fso.CreateTextFile(p_tmp + "ftp.txt", 2, true); 
+ fh.Write(cmd); 
+ 
+ fh.Close();
+
+ runCmd(p_bin + 'winSCP\\winscp.com /ini /script='+p_tmp+'ftp.txt');
+
+}
 
 
 // запуск команд из оболочки
@@ -195,6 +235,8 @@ function make_patch(p_element){
 
 // инициализация при запуске приложения
 $(document).ready(function() {
+      p_bin = '.\\resources\\bin\\';
+      p_tmp = '.\\tmp\\';
 
       resizeScreen();
 
@@ -202,7 +244,7 @@ $(document).ready(function() {
 
       readParams();
 
-      alert(params.ftp.url)
+      //alert(params.ftp.url)
       //$('#get_ftp').val(params.ftp.url)
 
       
